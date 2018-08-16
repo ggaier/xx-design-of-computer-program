@@ -38,7 +38,7 @@ def hand_rank(hand):
     ranks = card_ranks(hand)
     print ranks
     if straight(ranks) and flush(hand):            # straight flush
-        return (8, max(ranks))
+        return (8, max(ranks)[0])
     elif kind(4, ranks):                           # 4 of a kind
         return (7, kind(4, ranks), kind(1, ranks))
     elif kind(3, ranks) and kind(2, ranks):        # full house
@@ -90,11 +90,10 @@ def kind(repeat, ranks):
             card_dict[card[0]] +=1
         else:
             card_dict[card[0]] = 1
-    for rank in card_dict.keys():
-        if repeat == card_dict[rank]:
-            return rank
-        else:
-            return False
+    for count_card in card_dict.items():
+        if repeat == count_card[1]:
+            return count_card[0]
+    return False
 
 def two_pair(ranks):
     card_dict = {}
@@ -119,6 +118,7 @@ def test():
 
     # add hand_rank assert statements
     assert hand_rank(sf) == (8, 10)
+    print hand_rank(fk)
     assert hand_rank(fk) == (7, 9, 7)
     assert hand_rank(fh) == (6, 10, 7)
     return "Test passed"

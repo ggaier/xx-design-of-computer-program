@@ -67,7 +67,8 @@ def digital(card):
     return int(mapping.get(card[0], card[0]))
 
 def straight(ranks):
-    return (ranks[0] - ranks[-1]) == (len(ranks)-1)
+    straight = range(ranks[-1], ranks[0]+1)
+    return len(set(straight)- set(ranks))==0
 
 def flush(hand):
     suit_set = set()
@@ -107,8 +108,8 @@ def test():
     sf = "6C 7C 8C 9C TC".split()
     fk = "9D 9H 9S 9C 7D".split()
     fh = "TD TC TH 7C 7D".split()
-    assert straight([9, 8, 7,6,5]) == True
-    assert straight([9, 8, 7,6,6]) == False
+    assert straight([9, 8, 7, 6, 5]) == True
+    assert straight([9, 8, 8, 6, 5]) == False
     assert flush(sf) == True
     assert flush(fk) == False
     assert card_ranks(sf) == [10, 9, 8, 7, 6]

@@ -71,11 +71,7 @@ def straight(ranks):
     return len(set(straight)- set(ranks))==0
 
 def flush(hand):
-    suit_set = set()
-    flush = []
-    for card in hand:
-        suit_set.add(card[1])
-        flush.append(card[0])
+    suit_set = set([s for r,s in hand])
     return len(suit_set) == 1
 
 def kind(repeat, ranks):

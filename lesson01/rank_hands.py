@@ -59,8 +59,8 @@ def hand_rank(hand):
 
 def card_ranks(hand):
     """return a list of sorted tuples"""
-    tuple_hand = tuple(tuple(card) for card in hand)
-    return map(digital, sorted(tuple_hand, reverse=True))
+    tuple_hand = [rank for rank,suit in hand]
+    return sorted(map(digital, tuple_hand), reverse = True)
 
 def digital(card):
     mapping = {'T':10, "J":11, 'Q':12, 'K':13, 'A':14}
@@ -130,3 +130,4 @@ def test():
     return "Test passed"
 
 print test()
+print card_ranks(['AC', '3D', '4S', 'KH'])  # should output [14, 13, 4, 3]

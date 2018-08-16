@@ -119,6 +119,10 @@ def test():
     assert poker([sf]) == sf
     assert poker([sf] + 99*[fh]) == sf
 
+    assert card_ranks(sf) == [10, 9, 8, 7, 6]
+    assert card_ranks(fk) == [9, 9, 9, 9, 7]
+    assert card_ranks(fh) == [10, 10, 10, 7, 7]
+
     # add hand_rank assert statements
     assert hand_rank(sf) == (8, 10)
     assert hand_rank(fk) == (7, 9, 7)

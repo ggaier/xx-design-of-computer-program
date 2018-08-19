@@ -75,15 +75,8 @@ def flush(hand):
     return len(suit_set) == 1
 
 def kind(repeat, ranks):
-    card_dict = {}
-    for card in ranks:
-        if card in card_dict:
-            card_dict[card] +=1
-        else:
-            card_dict[card] = 1
-    for count_card in card_dict.items():
-        if repeat == count_card[1]:
-            return count_card[0]
+    for rank in ranks:
+        if ranks.count(rank) == repeat: return rank
     return None
 
 def two_pair(ranks):

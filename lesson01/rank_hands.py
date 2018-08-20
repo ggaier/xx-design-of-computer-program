@@ -59,8 +59,11 @@ def hand_rank(hand):
 
 def card_ranks(hand):
     """return a list of sorted tuples"""
-    tuple_hand = ['--23456789TJQKA'.index(rank) for rank,suit in hand]
-    return sorted(tuple_hand, reverse = True)
+    ranks = ['--23456789TJQKA'.index(rank) for rank,suit in hand]
+    ranks.sort(reverse =True)
+    if ranks == [14, 5, 4, 3, 2]:
+        return [5, 4,3,2,1]
+    return ranks
 
 def digital(card):
     mapping = {'T':10, "J":11, 'Q':12, 'K':13, 'A':14}
@@ -96,6 +99,8 @@ def test():
     fk = "9D 9H 9S 9C 7D".split()
     fh = "TD TC TH 7C 7D".split()
     tp = "5S 5D 9H 9C 6S".split()  # Two pairs
+    al = "AC 2D 4H 3D 5S".split()  # Ace-Low Straight
+    assert straight(card_ranks(al)) == True
     assert straight([9, 8, 7, 6, 5]) == True
     assert straight([9, 8, 8, 6, 5]) == False
     assert flush(sf) == True

@@ -80,16 +80,14 @@ def kind(repeat, ranks):
     return None
 
 def two_pair(ranks):
-    card_dict = {}
+    two_pairs = set()
     for card in ranks:
-        if card in card_dict:
-            card_dict[card]+=1
-        else:
-            card_dict[card] = 1
-    if len(card_dict.keys()) == 3:
-        return (card_dict.keys()[0], card_dict.keys()[1])
+        if ranks.count(card) == 2:
+            two_pairs.add(card)
+    if len(two_pairs) == 2:
+        return tuple(two_pairs)
     else:
-        return False
+        return None
 
 #To be a good programmer, you must be a good tester
 def test():
@@ -112,7 +110,8 @@ def test():
     assert kind(3, fkranks) == None
     assert kind(2, fkranks) == None
     assert kind(1, fkranks) == 7
-
+    print two_pair([10, 10, 5, 5, 2])
+    assert two_pair([10, 10, 5, 5, 2]) == (10, 5)
 
     # add hand_rank assert statements
     assert hand_rank(sf) == (8, 10)

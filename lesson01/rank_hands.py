@@ -30,8 +30,20 @@
 
 
 def poker(hands):
-    "Return the best hand: poker([hand,...]) => hand"
-    return max(hands, key=hand_rank)
+    "Return the best hand: poker([hand,...]) => [hand, ...]"
+    return allmax(hands, key=hand_rank)
+
+def allmax(hands, key=None):
+    "return a list of all items equal to the max of the iterable."
+    result, maxval = [], None
+    key = key or (lambda x: x)
+    for hand in hands:
+        xval = key(hand)
+        if not result or xval > maxval:
+            result, maxval = [hand], xval
+        elif xval == maxval:
+            result.append(hand)
+    return result
 
 
 def hand_rank(hand):

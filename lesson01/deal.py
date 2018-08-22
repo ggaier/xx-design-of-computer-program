@@ -21,7 +21,7 @@ def hand_percentages(n = 700*1000):
         for hand in deal(10):
             ranking = hand_rank(hand)[0]
             counts[ranking]+=1
-    for i in range(9):
-        print "%14s: %6.3f" % (hand_names[i], 100.0*counts[i]/n)
+    for i in reversed(range(9)):
+        print "%14s: %6.3f" % (hand_names[-i-1], 100.0*counts[i]/n)
 
 print hand_percentages(70000)

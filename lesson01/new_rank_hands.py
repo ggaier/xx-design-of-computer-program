@@ -26,6 +26,8 @@ def unzip(pairs): return zip(*pairs)
 def test():
     pairs = group([7, 10, 7, 9, 7])
     print pairs
+    print zip(pairs)
+    print zip([7, 10, 9, 7, 7])
     print zip(*pairs)
 
 print test()

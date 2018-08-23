@@ -67,7 +67,6 @@ def hand_rank(hand):
     else:                                          # high card
         return  (0, ranks)# your code here
 
-
 def card_ranks(hand):
     """return a list of sorted tuples"""
     ranks = ['--23456789TJQKA'.index(rank) for rank,suit in hand]

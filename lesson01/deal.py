@@ -25,3 +25,13 @@ def hand_percentages(n = 700*1000):
         print "%14s: %6.3f" % (hand_names[-i-1], 100.0*counts[i]/n)
 
 print hand_percentages(70000)
+
+print "Elegance is not optional"
+"i-t-y: clarity, simplicity, generality"
+"""
+Dimensions of Programming: 
+1. Correctness
+2. Efficiency
+3. Features
+4. Elegance
+"""

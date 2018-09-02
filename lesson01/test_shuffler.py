@@ -15,6 +15,14 @@ def test_shuffler(shuffler, deck = 'abcd', n=1000):
     name = shuffler.__name__
     print '%s(%s)%s' % (name, deck, ('ok' if ok else '***BAD***'))
 
+def test_shufflers(shufflers = [shuffle, shuffle1], decks = ['abc', 'ab']):
+    for deck in decks:
+        print 
+        for f in shufflers:
+            test_shuffler(f, deck)
+
+def shuffle(deck):
+    random.shuffle(deck)
 
 def shuffle1(deck):
     N = len(deck)

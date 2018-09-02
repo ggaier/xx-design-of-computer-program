@@ -1,7 +1,5 @@
 import random
 from collections import defaultdict
-from math import factorial
-
 
 def test_shuffler(shuffler, deck = 'abcd', n=1000):
     counts = defaultdict(int)
@@ -21,6 +19,8 @@ def test_shufflers(shufflers = [shuffle, shuffle1], decks = ['abc', 'ab']):
         for f in shufflers:
             test_shuffler(f, deck)
 
+def factorial(n): return 1 if n<=1 else n*factorial(n-1)
+
 def shuffle(deck):
     random.shuffle(deck)
 
@@ -36,3 +36,4 @@ def shuffle1(deck):
 def swapp(deck, i, j):
     print 'swap ', i, j
     deck[i], deck[j] = deck[j], deck[i]
+

@@ -7,7 +7,7 @@ hand_names = ['Straight Flush', '4 Kind', 'Full House', 'Flush',
 
 def deal(numberhands, n=5, deck = mydeck):
     "shuffle the card and deal out numberhands n-cards hands"
-    random.shuffle(deck)
+    random.shuffle(deck) 
     return [deck[n*i:n*(i+1)] for i in range(numberhands)]
 
 print deal(3)

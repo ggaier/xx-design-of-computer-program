@@ -27,8 +27,6 @@
 # Since we are assuming that some functions are already
 # written, this code will not RUN. Clicking SUBMIT will
 # tell you if you are correct.
-
-
 def poker(hands):
     "Return the best hand: poker([hand,...]) => [hand, ...]"
     return allmax(hands, key=hand_rank)

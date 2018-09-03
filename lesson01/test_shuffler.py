@@ -58,3 +58,10 @@ def test_shufflers(shufflers=[shuffle, shuffle1, shuffle2, shuffle3], decks=['ab
 
 
 test_shufflers()
+
+"""
+function 分为两类, 一类是不修改 input, 但是返回基于 input 的新的 output; 
+另一类是直接修改input, 会修改 input的状态.
+前一类方法可以被称作是 pure function. 是 computing type. 更容易测试.
+后一类可以被称作subroutines. 是 doing type. 
+"""

@@ -25,8 +25,7 @@ blackcards = [r+s for r in allranks for s in 'SC']
 def best_wild_hand(hand):
     "Try all values for jokers in all 5-card selections."
     # Your code here
-    hands = set(best_hand(h) for h in itertools.product(
-        *map(replacement, hand)))
+    hands = set(best_hand(h) for h in itertools.product(*map(replacement, hand)))
     return max(hands, key = hand_rank)
 
 def replacement(card):
@@ -35,7 +34,7 @@ def replacement(card):
     elif card == '?R':
         return redcards
     else:
-        [card]
+        return [card]
 
 def test_best_wild_hand():
     assert (sorted(best_wild_hand("6C 7C 8C 9C TC 5C ?B".split()))
@@ -46,4 +45,4 @@ def test_best_wild_hand():
             == ['7C', '7D', '7H', '7S', 'JD'])
     return 'test_best_wild_hand passes'
 
-print test_best_hand()
+print test_best_wild_hand()

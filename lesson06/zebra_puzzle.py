@@ -22,21 +22,24 @@ def zebra_puzzle():
     orderings = list(itertools.permutations(houses))
     return next((WATER, ZEBRA) 
                 for (red, green, ivory, yellow, blue) in orderings 
+                if imright(green, ivory) #6
                 for (Englishman, Spaniard, Ukranian, Japanese, Norwegion) in orderings
-                for (dog, snails, fox, horse, ZEBRA) in orderings 
+                if Englishman is red #2
+                if Norwegion is first #10
+                if nextto(Norwegion, blue) #15
                 for (coffee, tea, milk, oj, WATER) in orderings
+                if coffee is green #4
+                if Ukranian is tea #5
+                if milk is middle #9
                 for (OldGold, Kools, Chesterfields, LuckyStrike, Parliaments) in orderings
-                if Englishman is red
-                if coffee is green
-                if Ukranian is tea
-                if imright(green, ivory)
+                if Kools is yellow #8
+                if LuckyStrike is oj #13
+                if Japanese is Parliaments #14
+                for (dog, snails, fox, horse, ZEBRA) in orderings 
+                if Spaniard is dog
                 if OldGold is snails
-                if Kools is yellow
-                if milk is middle
-                if Norwegion is first
                 if nextto(Chesterfields, fox)
                 if nextto(Kools, horse)
-                if LuckyStrike is oj
-                if Japanese is Parliaments
-                if nextto(Norwegion, blue)
                 )
+
+print zebra_puzzle()

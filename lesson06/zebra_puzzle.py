@@ -43,3 +43,12 @@ def zebra_puzzle():
                 )
 
 print zebra_puzzle()
+
+import time
+def timedcall(fn, *args):
+    t0 = time.clock()
+    result = fn(*args)
+    t1 = time.clock()
+    print t1-t0, result
+
+timedcall(zebra_puzzle)

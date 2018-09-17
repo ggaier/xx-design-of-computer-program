@@ -51,4 +51,14 @@ def timedcall(fn, *args):
     t1 = time.clock()
     print t1-t0, result
 
-timedcall(zebra_puzzle)
+def averge(numbers):
+    return sum(numbers)/ float(len(numbers))
+
+def timedCalls(n, fn, *args):
+    if isinstance(n, int):
+        times = [timedcall(fn, *args)[0] for _ in range(n)]
+    else:
+        times = []
+        while sum(times)<n:
+            times.append(timedcall(fn, *args)[0])
+    return min(times), averge(times), max(times)

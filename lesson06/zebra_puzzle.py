@@ -21,28 +21,28 @@ def zebra_puzzle():
     houses = first, _, middle, _, _ = [1, 2, 3, 4, 5]
     orderings = list(itertools.permutations(houses))
     return next((WATER, ZEBRA) 
-                for (red, green, ivory, yellow, blue) in orderings 
+                for (red, green, ivory, yellow, blue) in c(orderings)
                 if imright(green, ivory) #6
-                for (Englishman, Spaniard, Ukranian, Japanese, Norwegion) in orderings
+                for (Englishman, Spaniard, Ukranian, Japanese, Norwegion) in c(ordering)
                 if Englishman is red #2
                 if Norwegion is first #10
                 if nextto(Norwegion, blue) #15
-                for (coffee, tea, milk, oj, WATER) in orderings
+                for (coffee, tea, milk, oj, WATER) in c(ordering)
                 if coffee is green #4
                 if Ukranian is tea #5
                 if milk is middle #9
-                for (OldGold, Kools, Chesterfields, LuckyStrike, Parliaments) in orderings
+                for (OldGold, Kools, Chesterfields, LuckyStrike, Parliaments) in c(ordering)
                 if Kools is yellow #8
                 if LuckyStrike is oj #13
                 if Japanese is Parliaments #14
-                for (dog, snails, fox, horse, ZEBRA) in orderings 
+                for (dog, snails, fox, horse, ZEBRA) in c(orderings)
                 if Spaniard is dog
                 if OldGold is snails
                 if nextto(Chesterfields, fox)
                 if nextto(Kools, horse)
                 )
 
-print zebra_puzzle()
+# print zebra_puzzle()
 
 import time
 def timedcall(fn, *args):
@@ -62,3 +62,31 @@ def timedCalls(n, fn, *args):
         while sum(times)<n:
             times.append(timedcall(fn, *args)[0])
     return min(times), averge(times), max(times)
+
+def instrument_fn(fn, *args):
+    c.starts, c.items = 0, 0
+    result = fn(*args)
+    print '%s got %s with %d iters over %7d times' % (fn.__name__, result, c.starts, c.items)
+
+def c(sequence):
+    c.starts +=1
+    for item in sequence:
+        c.items +=1
+        yield item
+
+
+def ints(start, end=None):
+    i = start
+    while i <= end or end is None:
+        yield i
+        i = i+1
+
+
+def all_ints():
+    yield 0 
+    print 0
+    for i in ints(1):
+        yield +i
+        yield -i
+
+instrument_fn(zebra_puzzle)

@@ -64,6 +64,7 @@ def timedCalls(n, fn, *args):
     return min(times), averge(times), max(times)
 
 def instrument_fn(fn, *args):
+    "Another key feature is that the local variables and execution state are automatically saved between calls."
     c.starts, c.items = 0, 0
     result = fn(*args)
     print '%s got %s with %d iters over %7d times' % (fn.__name__, result, c.starts, c.items)

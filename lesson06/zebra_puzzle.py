@@ -50,6 +50,7 @@ def timedcall(fn, *args):
     result = fn(*args)
     t1 = time.clock()
     print t1-t0, result
+    return (t1 - t0, result)
 
 def averge(numbers):
     return sum(numbers)/ float(len(numbers))

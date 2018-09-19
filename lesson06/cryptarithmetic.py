@@ -1,3 +1,4 @@
+# coding=utf-8
 from __future__ import division
 import string, re, itertools
 
@@ -19,7 +20,7 @@ def valid(f):
     except ArithmeticError: 
         return False
 
-"""
+summary = """
 所以解决一个问题的步骤: 
 1. concet inventory, 确定问题有多少个概念
 2. refine ideas, 提炼想法

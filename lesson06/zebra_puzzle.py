@@ -49,7 +49,7 @@ def timedcall(fn, *args):
     t0 = time.clock()
     result = fn(*args)
     t1 = time.clock()
-    print t1-t0, result
+    # print t1-t0, result
     return (t1 - t0, result)
 
 def averge(numbers):

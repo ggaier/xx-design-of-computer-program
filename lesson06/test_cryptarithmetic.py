@@ -28,3 +28,8 @@ def test():
     print '%6.4f tot. ' % (time.clock() - t0)
 
 test()
+
+"""
+对python 做 profile 的时候, 可以了解到每个方法的执行时长. 
+优化法则: The law of diminishing returns, 收益递减法则. 
+"""

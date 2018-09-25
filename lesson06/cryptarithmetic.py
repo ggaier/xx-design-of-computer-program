@@ -29,36 +29,36 @@ summary = """
 5. refine code, 继续提炼完善代码
 """
 
-# def compile_word(word):
-#     if word.isupper():
-#         terms = [('%s*%s' % (10**i, d)) 
-#                 for (i, d) in enumerate(word[::1]) ]
-#         return '(' + '+'.join(terms) +')'
-#     else:
-#         return word
+def compile_word(word):
+    if word.isupper():
+        terms = [('%s*%s' % (10**i, d)) 
+                for (i, d) in enumerate(word[::-1]) ]
+        return '(' + '+'.join(terms) +')'
+    else:
+        return word
 
-# def faster_solve(formula):
-#     f, letters = compile_formula(formula, True)
-#     for digits in itertools.permutations((1,2,3,4,5,6,7,8,9,0), len(letters)):
-#         try:
-#             if f(*digits) is True:
-#                 table = string.maketrans(letters, ''.join(map(str, digits)))
-#                 print table
-#                 return formula.translate(table)
-#         except ArithmeticError:
-#             print 'error happens'
-#             pass
-
-
-# def compile_formula(formula, verbose= False):
-#     letters = ''.join(set(re.findall('[A-Z]', formula)))
-#     params = ', '.join(letters)
-#     tokens = map(compile_word, re.split('([A-Z]+)', formula))
-#     body = ''.join(tokens)
-#     f = 'lambda %s: %s' % (params, tokens)
-#     if verbose: print f
-#     return eval(f), letters
+def faster_solve(formula):
+    f, letters = compile_formula(formula, True)
+    for digits in itertools.permutations((1,2,3,4,5,6,7,8,9,0), len(letters)):
+        try:
+            if f(*digits) is True:
+                table = string.maketrans(letters, ''.join(map(str, digits)))
+                print table
+                return formula.translate(table)
+        except ArithmeticError:
+            print 'error happens'
+            pass
 
 
-# print faster_solve("TWO+TWO == FOUR")
+def compile_formula(formula, verbose= False):
+    letters = ''.join(set(re.findall('[A-Z]', formula)))
+    params = ', '.join(letters)
+    tokens = map(compile_word, re.split('([A-Z]+)', formula))
+    body = ''.join(tokens)
+    f = 'lambda %s: %s' % (params, body)
+    if verbose: print f
+    return eval(f), letters
+
+
+print faster_solve("TWO+TWO == FOUR")
 

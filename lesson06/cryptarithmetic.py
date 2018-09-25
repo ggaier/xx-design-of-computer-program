@@ -30,6 +30,9 @@ summary = """
 """
 
 def compile_word(word):
+    """ list[::-1] extended slices, which support a optional third 'step'
+    argument. the syntax above return a list of reversed order
+    """
     if word.isupper():
         terms = [('%s*%s' % (10**i, d)) 
                 for (i, d) in enumerate(word[::-1]) ]

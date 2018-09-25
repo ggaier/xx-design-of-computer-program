@@ -43,7 +43,6 @@ def faster_solve(formula):
         try:
             if f(*digits) is True:
                 table = string.maketrans(letters, ''.join(map(str, digits)))
-                print table
                 return formula.translate(table)
         except ArithmeticError:
             print 'error happens'

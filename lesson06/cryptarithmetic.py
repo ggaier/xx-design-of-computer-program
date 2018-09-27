@@ -54,9 +54,14 @@ def faster_solve(formula):
 
 def compile_formula(formula, verbose= False):
     letters = ''.join(set(re.findall('[A-Z]', formula)))
+    "match the empty string"
+    firsletters = set(re.findall(r'\b[A-Z][A-Z]',  formula))
     params = ', '.join(letters)
     tokens = map(compile_word, re.split('([A-Z]+)', formula))
     body = ''.join(tokens)
+    if firsletters:
+        tests = ' and '.join([L+'!=0' for L in letters])
+        body = '%s and (%s)' % (tests, body)
     f = 'lambda %s: %s' % (params, body)
     if verbose: print f
     return eval(f), letters

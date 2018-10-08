@@ -8,9 +8,9 @@ def matchset(pattern, text):
     elif 'alt' == op:
         return matchset(x, text) | matchset(y, text)
     elif 'dot' == op:
-        return  # your code here
+        return  set([text[1:]]) if text else null
     elif 'oneof' == op:
-        return  # your code here
+        return  set([text[1:]]) if any(text.startswith(c) for c in x) else null
     elif 'eol' == op:
         return set(['']) if text == '' else null
     elif 'star' == op:

@@ -1,3 +1,18 @@
+
+def search(pattern, text):
+    "Match pattern anywhere in text; return longest earliest match or None."
+    for i in range(len(text)):
+        m = match(pattern, text[i:])
+        if m is not None:
+            return m
+
+def match(pattern, text):
+    "Match pattern against start of text; return longest match found or None."
+    remainders = matchset(pattern, text)
+    if remainders:
+        shortest = min(remainders, key=len)
+        return  text[:len(text)-len(shortest)]
+
 def matchset(pattern, text):
     "Match pattern at start of text; return a set of remainders of text."
     op, x, y = components(pattern)
@@ -8,9 +23,9 @@ def matchset(pattern, text):
     elif 'alt' == op:
         return matchset(x, text) | matchset(y, text)
     elif 'dot' == op:
-        return  set([text[1:]]) if text else null
+        return set([text[1:]]) if text else null
     elif 'oneof' == op:
-        return  set([text[1:]]) if any(text.startswith(c) for c in x) else null
+        return set([text[1:]]) if any(text.startswith(c) for c in x) else null
     elif 'eol' == op:
         return set(['']) if text == '' else null
     elif 'star' == op:
@@ -29,6 +44,18 @@ def components(pattern):
     x = pattern[1] if len(pattern) > 1 else None
     y = pattern[2] if len(pattern) > 2 else None
     return pattern[0], x, y
+
+
+def lit(string): return ('lit', string)
+def seq(x, y): return ('seq', x, y)
+def alt(x, y): return ('alt', x, y)
+def start(x): return ('start', x)
+def plus(x): return seq(x, start(x))
+def opt(x): return alt(lit(""), x)
+def oneOf(chars): return ('oneof', chars)
+
+dot = ('dot', )
+eol = ('eol',)
 
 
 def test():

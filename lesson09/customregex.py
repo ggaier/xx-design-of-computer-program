@@ -8,7 +8,7 @@ def search(pattern, text):
 
 def match(pattern, text):
     "Match pattern against start of text; return longest match found or None."
-    remainders = matchset(pattern, text)
+    remainders = pattern(text)
     if remainders:
         shortest = min(remainders, key=len)
         return  text[:len(text)-len(shortest)]
@@ -43,19 +43,20 @@ def components(pattern):
     "Return the op, x, and y arguments; x and y are None if missing."
     x = pattern[1] if len(pattern) > 1 else None
     y = pattern[2] if len(pattern) > 2 else None
+    map()
     return pattern[0], x, y
 
 
-def lit(string): return ('lit', string)
-def seq(x, y): return ('seq', x, y)
-def alt(x, y): return ('alt', x, y)
-def start(x): return ('start', x)
+def lit(string): return lambda text: set(text[len(string):]) if text.startswith(string) else null
+def seq(x, y): return lambda text: set().union(*map(y, x(text)))
+def alt(x, y): return lambda text : x(text) | y(text)
+def start(x): return lambda t: (set(t)| set(t2 for t1 in x(t) if(t1!=t) 
+                                                for t2 in start(x)(t1)))
 def plus(x): return seq(x, start(x))
 def opt(x): return alt(lit(""), x)
-def oneOf(chars): return ('oneof', chars)
-
-dot = ('dot', )
-eol = ('eol',)
+def oneOf(chars): return lambda t: set(t[1:]) if (t and t[0] in chars) else null
+dot = lambda t: set(t[1:]) if t else null
+eol = lambda t: set(['']) if t == '' else null
 
 
 def test():
